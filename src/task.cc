@@ -2,10 +2,13 @@
 
 namespace perf {
 
-void Task::RunInThreadPool(ThreadPool& pool) { pool.Enqueue(Run, this); }
-
-std::thread Task::RunInNewThread() { return std::thread(Run, this); }
-
 void Task::Run() { RunImpl(); }
+
+void Task::RunInThreadPool(ThreadPool& pool) {
+    auto res = pool.Enqueue(&Task::Run, this);
+    res.wait();
+}
+
+std::thread Task::RunInNewThread() { return std::thread(&Task::Run, this); }
 
 }  // namespace perf

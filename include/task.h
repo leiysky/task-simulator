@@ -25,4 +25,6 @@ class Task {
     virtual void RunImpl() = 0;
 };
 
+using TaskPtr = std::shared_ptr<Task>;
+
 }  // namespace perf

@@ -5,12 +5,11 @@
 
 namespace perf {
 
-class ComputeTask : public Task {
-  private:
-    void RunImpl() override;
-};
+class TaskComputeHash : public Task {
+  public:
+    explicit TaskComputeHash(std::chrono::milliseconds _duration)
+        : Task(_duration) {}
 
-class ComputeTaskHash : public ComputeTask {
   private:
     void RunImpl() override;
 };
