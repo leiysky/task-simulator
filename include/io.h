@@ -1,36 +1,13 @@
 #pragma once
 
-#include <bits/stdc++.h>
+#include <common.h>
+#include <task.h>
 
-namespace {
+namespace perf {
 
-class IOTask {
- public:
-  IOTask(size_t _bytes_read, size_t _bytes_write);
-
- private:
+class IOTask : public Task {
+  private:
+    void RunImpl() override;
 };
 
-class SyncReader {
- public:
-  virtual size_t Read(char *buff, size_t n) = 0;
-};
-
-class SyncWriter {
- public:
-  virtual void Write(char *buff, size_t n) = 0;
-};
-
-class AsyncReader {
- public:
-  virtual void ReadAsync(char *buff, size_t n,
-                         std::function<void(size_t)> callback) = 0;
-};
-
-class AsyncWriter {
- public:
-  virtual void WriteAsync(char *buff, size_t n,
-                          std::function<void()> callback) = 0;
-};
-
-}  // namespace
+}  // namespace perf

@@ -1,12 +1,18 @@
 #pragma once
 
-#include <bits/stdc++.h>
+#include <common.h>
+#include <task.h>
 
 namespace perf {
 
-class ComputeTask {
- public:
-  virtual void Run(const std::chrono::milliseconds &time) = 0;
+class ComputeTask : public Task {
+  private:
+    void RunImpl() override;
+};
+
+class ComputeTaskHash : public ComputeTask {
+  private:
+    void RunImpl() override;
 };
 
 }  // namespace perf
